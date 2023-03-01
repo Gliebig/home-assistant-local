@@ -794,3 +794,14 @@
       message: Outside Tank Volume below 5 Gallons
       title: Outside Hydroponics
   mode: single
+- id: '1677705769345'
+  alias: Push config to github
+  description: Auto Backup config files daily
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: shell_command.pushupdates_to_github
+    data: {}
+  mode: single
