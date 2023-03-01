@@ -1,0 +1,46 @@
+esphome:
+  name: nutrient_tank
+  platform: ESP8266
+  board: d1
+
+wifi:
+  ssid: "PhoneHome"
+  password: "Married042503"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Nutrient Tank Fallback Hotspot"
+    password: !secret "nutrient_tank_fallback_password"
+    
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret "api_password"
+
+ota:
+  password: !secret "ota_password_orig"
+
+
+sensor:
+  - platform: hx711
+    name: "Nutrient Tank Weight"
+    id: tank_weight_raw
+    dout_pin: D2
+    clk_pin: D5
+    filters:
+      - calibrate_linear:
+          - -44970 -> 0
+          - 55683 -> 4.49
+          - 156249 -> 8.98
+          - 253866 -> 13.47
+      - sliding_window_moving_average:
+          window_size: 5
+          send_every: 5
+    update_interval: 2s
+    unit_of_measurement: kg
+    accuracy_decimals: 2
+      

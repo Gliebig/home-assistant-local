@@ -1,0 +1,48 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+system_health:
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: !secret "my_proxy"
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+  
+# Text to speech
+tts:
+  - platform: google_translate
+    
+group: !include groups.yaml
+automation: !include automations.yaml
+#automation: !include_dir_merge_list automation
+script: !include scripts.yaml
+scene: !include scenes.yaml
+light: !include lights.yaml
+#camera: !include cameras.yaml
+sensor: !include sensors.yaml
+#climate: !include climate.yaml
+switch: !include switches.yaml
+recorder: !include recorder.yaml
+mqtt: !include mqtt.yaml
+
+influxdb:
+  host: !secret "influx_host"
+  port: !secret "influx_port"
+  database: homeassistant
+  username: !secret influx1_usr
+  password: !secret influx1_pwd
+  max_retries: 9
+  default_measurement: state
+
+device_tracker:
+  - platform: mqtt_json
+    devices:
+      phone_greg: zanzito/shared_locations/greg_note9
+      phone_joyce: zanzito/shared_locations/joyce_s4
+      phone_theresa: zanzito/shared_locations/theresa_note9
+
+stream:
+api:
+alexa:
+  smart_home:

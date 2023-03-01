@@ -1,0 +1,27 @@
+####################
+# Mom is Home
+####################
+- alias: Alert Mom
+  id: '1528229584189'
+  trigger:
+  - entity_id: device_tracker.phone_joyce
+    for: 00:00:30
+    from: not_home
+    platform: state
+    to: home
+  - entity_id: device_tracker.phone_joyce
+    event: enter
+    platform: zone
+    zone: zone.gathering_place
+  - entity_id: device_tracker.phone_joyce
+    event: enter
+    platform: zone
+    zone: zone.good_shephard
+  condition: []
+  action:
+  - data:
+      message: 'Mom is home '
+    service: notify.greg
+  - data:
+      message: 'Mom is home '
+    service: notify.theresa

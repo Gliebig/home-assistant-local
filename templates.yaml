@@ -1,0 +1,31 @@
+template:
+  - sensor:
+    - name: feels_like
+      state: >
+        {{ (states('sensor.breeze_pro_temp')|float) }}
+        {{ (states('sensor.breeze_pro_humidity')|float) }}
+        {{ (states('sensor.breeze_pro_wind_speed')|float) }}
+
+        {% set T = (states('sensor.breeze_pro_temp')|float) %}
+        {% set RH = (states('sensor.breeze_pro_humidity')|float) %}
+        {% set windspeed = (states('sensor.breeze_pro_wind_speed')|float) %}
+
+        {{ T, RH, windspeed }}
+
+        {% if (80.0 >= T <= 112.0) and (RH < 13) %}
+          {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) | round (1) %}
+        {% elif (80.0 >= T <= 87.0) and (RH > 85) %} 
+          {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) |round (1) %}
+          {% set A1 = ((13-RH)/4) * SQRT((17-ABS(T-95))/17) %}
+          {% set feels_like = feels_like - A1 |round(2) %}
+        {% elif (50.0 < T < 80.0) %}
+          {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) |round (1) %}
+          {% set A2 = ((RH-85)/10) * ((87-T)/5) %}
+          {% set feels_like = feels_like + A2 |round(1) %}
+        {% elif (T <= 50.0) and (windspeed >0) %}
+          {% set feels_like = ((0.6215 * T) -35.75*(windspeed**0.16) +0.4275*T*windspeed**0.16+35.74)| round(1)  %}
+        {% else %}
+          {% set feels_like = T| round(1)  %}
+        {% endif %}
+            
+        {{ feels_like }} °F

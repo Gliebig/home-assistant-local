@@ -1,0 +1,122 @@
+
+
+#- platform: template
+#  sensors:
+#    heat_index_breeze_pro:
+#      friendly_name: "Feels Like"
+#      #formula taken from http://www.srh.noaa.gov/ama/?n=heatindex
+#      value_template: >-
+#        {% if 112 > states('sensor.breeze_pro_temp') | float > 80 and states('sensor.breeze_pro_humdity') | float < 13 %}
+#          {{ (((-42.379 + (2.04901523*(states.sensor.breeze_pro_temp.state|float)) + (10.14333127*(states.sensor.breeze_pro_humdity.state|float)) - (0.22475541*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)) - (0.00683783*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_temp.state|float)) - (0.05481717*(states.sensor.breeze_pro_humdity.state|float)*(states.sensor.breeze_pro_humdity.state|float)) + (0.00122874*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)) + (0.00085282*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)*(states.sensor.breeze_pro_humdity.state|float)) - (0.00000199*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)*(states.sensor.breeze_pro_humdity.state|float)))-(((13-(states.sensor.breeze_pro_humdity.state|float))/4)*sqrt((17-(((states.sensor.breeze_pro_temp.state|float)-95)|abs))/17))) | round(1)) }} 
+#        {% elif 87 > states('sensor.breeze_pro_temp') | float > 80 and states('sensor.breeze_pro_humdity') | float > 85 %} 
+#          {{ (((-42.379 + (2.04901523*(states.sensor.breeze_pro_temp.state|float)) + (10.14333127*(states.sensor.breeze_pro_humdity.state|float)) - (0.22475541*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)) - (0.00683783*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_temp.state|float)) - (0.05481717*(states.sensor.breeze_pro_humdity.state|float)*(states.sensor.breeze_pro_humdity.state|float)) + (0.00122874*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)) + (0.00085282*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)*(states.sensor.breeze_pro_humdity.state|float)) - (0.00000199*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_temp.state|float)*(states.sensor.breeze_pro_humdity.state|float)*(states.sensor.breeze_pro_humdity.state|float)))-(((states.sensor.breeze_pro_humdity.state|float)-85)/10)*((87-(states.sensor.breeze_pro_temp.state|float))/5)) | round(1)) }}
+#        {% elif 51 > states('sensor.breeze_pro_temp') | float < 80 }
+#          {{ ((0.5*((states.sensor.breeze_pro_temp.state|float) + 61.0 + (((states.sensor.breeze_pro_temp.state|float)-68)*1.2) + ((states.sensor.breeze_pro_humdity.state|float)*0.094))) | round(1)) }}
+#        {% elif states('sensor.breeze_pro_temp') | float < 50 }
+#          {{ (((35.74 + .6215*(states.sensor.breeze_pro_temp.state|float)) - (35.75*((states.sensor.breeze_pro_wind_speed.state|float)^0.016)) + (0.4275*(states.sensor.breeze_pro_temp.state|float) * (states.sensor.breeze_pro_wind_speed.state|float)^0.016)) | round(1)) }}       
+#        {% endif %}
+#    unit_of_measurement: "°F"
+
+
+#sensors 
+#- platform: darksky
+#  api_key: e533476f7789c6125a0bd91973bdf76a
+#  monitored_conditions:
+#    - summary
+#    - icon
+#    - nearest_storm_distance
+#    - dew_point
+#    - wind_speed
+#    - wind_bearing
+#    - pressure
+#    - precip_type
+#    - precip_intensity
+#  scan_interval: 00:15:00
+#  units: us
+
+
+
+##-Coomented our 10/14/22 due to upcoming depreciated MQTT warning
+
+##- platform: mqtt
+##  name: "Smoker Temperature"
+##  state_topic: "tele/tasmota_0DE3A3/SENSOR"
+##  value_template: "{{ value_json.DS18B20.Temperature }}"
+##  unit_of_measurement: "°F"
+
+##- platform: mqtt
+##  name: "Bedroom Temp"
+##  state_topic: "tele/tasmota_00DC7F/SENSOR"
+##  value_template: "{{ value_json['AM2301'].Temperature }}"
+##  unit_of_measurement: "°F"
+
+##- platform: mqtt
+##  name: "Bedroom Humidity"
+##  state_topic: "tele/tasmota_00DC7F/SENSOR"
+##  value_template: "{{ value_json['AM2301'].Humidity }}"
+##  unit_of_measurement: "%"
+
+##- platform: mqtt  
+##  name: "Bedroom DewPoint"
+##  state_topic: "tele/tasmota_00DC7F/SENSOR"
+##  value_template: "{{ value_json['AM2301'].DewPoint }}"
+##  unit_of_measurement: "°F"
+
+### Sensor attached to portable thermostat also used for landing A/C
+##- platform: mqtt
+##  name: "Game Room Temp"
+### name: "Landing Temp" # for summer   
+##  state_topic: "tele/tasmota_0DD895/SENSOR"
+##  value_template: "{{ value_json['AM2301'].Temperature }}"
+##  unit_of_measurement: "°F"
+
+##- platform: mqtt
+##  name: "Game Room Humidity"
+### name: "Landing Humidity" # for summer 
+##  state_topic: "tele/tasmota_0DD895/SENSOR"
+##  value_template: "{{ value_json['AM2301'].Humidity }}"
+##  unit_of_measurement: "%"
+
+##- platform: mqtt
+##  name: "Game Room DewPoint"
+### name: "Landing Dewpoint" # for summer  
+##  state_topic: "tele/tasmota_0DD895/SENSOR"
+##  value_template: "{{ value_json['AM2301'].DewPoint }}"
+##  unit_of_measurement: "°F"
+
+###Sensor attached to Fountain Switch Under Deck 02/03/21  
+##- platform: mqtt
+##  name: "Outdoor DewPoint"
+##  state_topic: "tele/tasmota_2BAEF0/SENSOR"
+##  value_template: "{{ value_json['AM2301'].DewPoint }}"
+##  unit_of_measurement: "°F"  
+
+##- platform: mqtt
+##  name: "Outdoor Humidity"
+##  state_topic: "tele/tasmota_2BAEF0/SENSOR"
+##  value_template: "{{ value_json['AM2301'].Humidity }}"
+##  unit_of_measurement: "%"
+##  
+##- platform: mqtt
+##  name: "Outdoor Temp"
+##  state_topic: "tele/tasmota_2BAEF0/SENSOR"
+##  value_template: "{{ value_json['AM2301'].Temperature }}"
+##  unit_of_measurement: "°F"  
+
+##- platform: template
+##  sensors:
+##    living_room_temp:
+##      friendly_name: "Living Room Temp"
+##      unit_of_measurement: '°F'
+##      value_template: "{{ state_attr('climate.boiler', 'current_temperature') }}"  
+
+##- platform: mqtt
+##  name: "Tank Weight"
+##  state_topic: "hydroponic/tank/weight"
+##  unit_of_measurement: "gal"
+
+##- platform: mqtt
+##  name: "Tank Temp" 
+##  state_topic: "hydroponic/tank/temp"
+##  unit_of_measurement: '°F"
+#

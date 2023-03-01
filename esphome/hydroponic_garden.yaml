@@ -1,0 +1,74 @@
+esphome:
+  name: hydroponic_garden
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Hydroponic Garden"
+    password: !secret fallback_password
+
+captive_portal:
+
+ota:
+  password: "419Erie"
+# Enable logging
+
+logger:
+  level: DEBUG
+
+# Enable Home Assistant API
+api:
+  password: "419Erie"
+
+
+# Enables Pump on pin 1
+switch:
+  - platform: gpio
+    pin: D1
+    name: "Nutrient Tank Pump"
+
+
+# Node MCU use pin2 for pwm
+output:
+  - platform: esp8266_pwm
+    pin: D2
+    frequency: 50 Hz    
+    id: pwm_output
+
+light:
+  - platform: monochromatic
+    output: pwm_output
+    name: "Pump Speed"   
+
+sensor:
+  #flow meter east D6 gpio12
+  - platform: pulse_counter
+    pin: D6
+    name: "East Flowrate"
+    unit_of_measurement: 'lph'
+    accuracy_decimals: 0   
+    filters:
+      - multiply: 0.0318
+
+  #flow meter center D7 gpio 13
+  - platform: pulse_counter
+    pin: D7
+    name: "Center Flowrate"
+    unit_of_measurement: 'lph'
+    accuracy_decimals: 0
+    filters:
+      - multiply: 0.0318
+
+  #flow meter east D8 gpio15
+  - platform: pulse_counter
+    pin: D8
+    name: "West Flowrate"
+    unit_of_measurement: 'lph'
+    accuracy_decimals: 0
+    filters:
+      - multiply: 0.0318       

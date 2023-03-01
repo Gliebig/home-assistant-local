@@ -1,0 +1,12 @@
+####################
+# Alert Theresa Home
+####################
+- alias: Theresa Home
+  id: '1528683044495'
+  trigger:
+  - entity_id: device_tracker.phone_theresa
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action: []

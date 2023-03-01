@@ -1,0 +1,59 @@
+esphome:
+  name: hydroponic_flow_meters
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Hydroponic Flow Meters"
+    password: !secret "fallback_password"
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+
+api:
+  encryption:
+    key: !secret api_key
+ota:
+  password: !secret ota_orig_password
+
+sensor:
+  #flow meter east D5 gpio14
+  - platform: pulse_counter
+    pin: D5
+    name: "East Channel Flow"
+    unit_of_measurement: 'lpm'
+    update_interval: 30s
+    accuracy_decimals: 2
+    filters:
+#      - multiply: 0.0318
+      - multiply: .002235
+
+# flow meter center D6 gpio 12
+  - platform: pulse_counter
+    pin: D6
+    name: "Center Channel Flow"
+    unit_of_measurement: 'lpm'
+    update_interval: 30s
+    accuracy_decimals: 2
+    filters:
+#      - multiply: 0.0318
+      - multiply: .002235
+     
+  #flow meter east D7 gpio13
+  - platform: pulse_counter
+    pin: D7
+    name: "West Channel Flow"
+    unit_of_measurement: 'lpm'
+    update_interval: 30s
+    accuracy_decimals: 2
+    filters:
+#      - multiply: 0.0318  
+      - multiply: .002235  

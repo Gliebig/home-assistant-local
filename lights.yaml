@@ -1,0 +1,110 @@
+#- platform: mqtt
+#  name: "Parlor Stair Lamp"
+#  state_topic: "stat/tasmota_869960/POWER"
+#  command_topic: "cmnd/tasmota_869960/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Landing Light"
+#  state_topic: "stat/tasmota_7488B2/POWER"
+#  command_topic: "cmnd/tasmota_7488B2/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Living Room Light"
+#  state_topic: "stat/tasmota_05E2AA/POWER"
+#  command_topic: "cmnd/tasmota_05E2AA/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Patio Security Light"
+#  state_topic: "stat/tasmota_B3702A/POWER"
+#  command_topic: "cmnd/tasmota_B3702A/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "East Light"
+#  state_topic: "stat/tasmota_4B2728/POWER"
+#  command_topic: "cmnd/tasmota_4B2728/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Patio Party Lights"
+#  state_topic: "stat/sonoff17/POWER"
+#  command_topic: "cmnd/sonoff17/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Deck Stair Lights"
+#  state_topic: "stat/tasmota_2D4B28/POWER"
+#  command_topic: "cmnd/tasmota_2D4B28/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Deck Light"
+#  state_topic: "stat/tasmota_4CDAFC/POWER"
+#  command_topic: "cmnd/tasmota_4CDAFC/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Deck Outlet Light"
+#  state_topic: "stat/tasmota_4381FE/POWER"
+#  command_topic: "cmnd/tasmota_4381FE/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Office Fan Light"
+#  state_topic: "stat/tasmota_AB0EAF/POWER1"
+#  command_topic: "cmnd/tasmota_AB0EAF/POWER1"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Living Room Fan Light"
+#  state_topic: "stat/tasmota_AB0EA4/POWER1"
+#  command_topic: "cmnd/tasmota_AB0EA4/POWER1"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Leg Lamp"
+#  command_topic: "cmnd/sonoff20/POWER1"
+#  state_topic: "stat/sonoff20/POWER1"
+#  availability_topic: tele/sonoff20/LWT
+#  payload_available: Online
+#  payload_not_available: Offline
+#  qos: 1
+#  payload_off: "OFF"
+#  payload_on: "ON"
+#  retain: false

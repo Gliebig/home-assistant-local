@@ -1,0 +1,122 @@
+####################
+## switches
+####################
+##-Coomented our 10/14/22 due to upcoming depreciated MQTT warning
+
+##- platform: mqtt
+##  name: "Smoker"
+##  state_topic: "stat/tasmota_0DE3A3/POWER"
+##  command_topic: "cmnd/tasmota_0DE3A3/POWER"
+##  qos: 1
+##  retain: false
+##  payload_on: "ON"
+##  payload_off: "OFF"
+
+##- platform: mqtt
+##  name: "Bedroom Thermostat"
+##  state_topic: "stat/tasmota_00DC7F/POWER"
+##  command_topic: "cmnd/tasmota_00DC7F/POWER"
+##  qos: 1
+##  retain: false
+##  payload_on: "ON"
+##  payload_off: "OFF"
+
+##- platform: mqtt
+##  name: "Basement Thermostat"
+##  #  name: "Landing Thermostat" #for summer
+##  state_topic: "stat/tasmota_0DD895/POWER"
+##  command_topic: "cmnd/tasmota_0DD895/POWER"
+##  qos: 1
+##  retain: false
+##  payload_on: "ON"
+##  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Fountain"
+#  state_topic: "stat/sonoff15/POWER"
+#  command_topic: "cmnd/sonoff15/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Power Supply"
+#  state_topic: "stat/sonoff19/POWER"
+#  command_topic: "cmnd/sonoff19/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Deck 3-Way"
+#  state_topic: "stat/tasmota_FBF103/POWER"
+#  command_topic: "cmnd/tasmota_FBF103/POWER"
+#  qos: 1
+#  retain: false
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "Office Fan Lowspeed"
+#  state_topic: "stat/tasmota_AB0EAF/FanSpeed"
+#  command_topic: "cmnd/tasmota_AB0EAF/FanSpeed"
+#  qos: 1
+#  retain: false
+#  payload_on: "1"
+#  payload_off: "0"
+
+#- platform: mqtt
+#  name: "Office Fan Mediumspeed"
+#  state_topic: "stat/tasmota_AB0EAF/FanSpeed"
+#  command_topic: "cmnd/tasmota_AB0EAF/FanSpeed"
+#  qos: 1
+#  retain: false
+#  payload_on: "2"
+#  payload_off: "0"
+
+#- platform: mqtt
+#  name: "Office Fan Highspeed"
+#  state_topic: "stat/tasmota_AB0EAF/FanSpeed"
+#  command_topic: "cmnd/tasmota_AB0EAF/FanSpeed"
+#  qos: 1
+#  retain: false
+#  payload_on: "3"
+#  payload_off: "0"
+
+#- platform: mqtt
+#  name: "Office Fan Off"
+#  state_topic: "stat/tasmota_AB0EAF/FanSpeed"
+#  command_topic: "cmnd/tasmota_AB0EAF/FanSpeed"
+#  qos: 1
+#  retain: false
+#  payload_on: "0"
+#  payload_off: "0"
+
+#- platform: mqtt
+#  name: "Livingroom Fan on Low"
+#  state_topic: "stat/tasmota_AB0EA4/FanSpeed"
+#  command_topic: "cmnd/tasmota_AB0EA4/FanSpeed"
+#  qos: 1
+#  retain: false
+#  payload_on: "1"
+#  payload_off: "0"
+
+#- platform: mqtt
+#  name: "Livingroom Fan on Medium"
+#  state_topic: "stat/tasmota_AB0EA4/FanSpeed"
+#  command_topic: "cmnd/tasmota_AB0EA4/FanSpeed"
+#  qos: 1
+#  retain: false
+#  payload_on: "2"
+#  payload_off: "0"
+
+#- platform: mqtt
+#  name: "Livingroom Fan on High"
+#  state_topic: "stat/tasmota_AB0EA4/FanSpeed"
+#  command_topic: "cmnd/tasmota_AB0EA4/FanSpeed"
+#  qos: 1
+#  retain: false
+#  payload_on: "3"
+#  payload_off: "0"

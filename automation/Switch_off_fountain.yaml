@@ -1,0 +1,13 @@
+####################
+# Turn Fountain Off at 11 pm
+####################
+- alias: Fountain off at 11 pm
+  id: '1528889824248'
+   trigger:
+  - at: '23:00:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: switch.fountain
+    service: switch.turn_off

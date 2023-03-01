@@ -1,0 +1,78 @@
+esphome:
+  name: nodemcu_basment_fridge_temp
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Nodemcu Basment Fridge Temp"
+    password: !secret "fallback_password"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+#  password: !secret api_password
+  encryption:
+    key: !secret api_key
+
+ota:
+  password: !secret ota2_password
+
+
+status_led:
+  pin: GPIO2
+
+dallas:
+  - pin: D2
+
+sensor:
+  - platform: dht
+    pin: D1
+    temperature:
+      filters:
+      - lambda: return x * (9.0/5.0) + 32.0;
+      unit_of_measurement: "°F"  
+      name: "Laundry Room Temp"
+    humidity:
+      unit_of_measurement: "%"
+      name: "Laundry Room Humidity"
+    update_interval: 60s
+    model: DHT22
+
+  - platform: dallas
+    address: 0xC53C01D607B2A428
+    filters:
+    - lambda: return x * (9.0/5.0) + 32.0;
+    unit_of_measurement: "°F"  
+    name: "Basement Freezer Temp"
+    
+  - platform: dallas
+    address: 0xDC3C01D6075F7128
+    filters:
+    - lambda: return x * (9.0/5.0) + 32.0;
+    unit_of_measurement: "°F"      
+    name: "Basement Fridge Temp"
+ 
+  - platform: dallas
+    address: 0x833C01D607FB0428
+    filters:
+    - lambda: return x * (9.0/5.0) + 32.0;
+    unit_of_measurement: "°F"      
+    name: "Deep Freeze Temp"
+    
+  - platform: dallas
+    address: 0xCA3C01D607B17328
+    filters:
+    - lambda: return x * (9.0/5.0) + 32.0;
+    unit_of_measurement: "°F"      
+    name: "Boiler Water Temp"    
+    
+ 

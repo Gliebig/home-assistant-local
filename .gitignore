@@ -1,0 +1,35 @@
+# Include Files and Folders
+!*.yaml
+!.gitignore
+!*.md
+!*.sh
+!*.js
+!
+
+# Ignore Folders
+.cloud/
+.git/
+.ssh/
+.storage/
+.google.token
+custom_components/
+deps/
+!esphome/
+glances/
+home-assistant.log
+home-assistant.log.1
+home-assistant.log.fault
+home-assistant_v2.db
+image/
+known_devices.yaml
+node-red/
+recorder.yaml
+tts/
+www/
+
+#ignore these yaml files
+ip_bans.yaml
+secrets.yaml
+watchman_report.txt
+cameras.yaml
+climate.yaml
