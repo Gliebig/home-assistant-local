@@ -10,7 +10,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Weather Office Fallback Hotspot"
-    password: "0lqpgiuYqhZq"
+    password: !sectre "weather_office_fallback_password"
 
 captive_portal:
 
