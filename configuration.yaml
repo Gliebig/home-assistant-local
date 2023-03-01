@@ -46,3 +46,6 @@ stream:
 api:
 alexa:
   smart_home:
+
+shell_command:
+  pushupdates_to_github: /bin/bash pushupdates.sh
