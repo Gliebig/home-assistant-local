@@ -4,7 +4,6 @@
       {% set T = (states('sensor.breeze_pro_temp')|float) %}
       {% set RH = (states('sensor.breeze_pro_humidity')|float) %}
       {% set windspeed = (states('sensor.breeze_pro_wind_speed')|float) %}
-
       {% if (80.0 >= T <= 112.0) and (RH < 13) %}
         {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) | round (1) %}
       {% elif (80.0 >= T <= 87.0) and (RH > 85) %} 
