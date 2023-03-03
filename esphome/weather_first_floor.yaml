@@ -19,11 +19,10 @@ logger:
 
 # Enable Home Assistant API
 api:
-  password: !secret api_password
   encryption:
     key: !secret api_key
 ota:
-  password: !secret ota_orig_password
+  password: !secret ota_password
 
 dallas:
   - pin: D2
