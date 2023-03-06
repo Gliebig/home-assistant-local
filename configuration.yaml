@@ -27,6 +27,7 @@ recorder: !include recorder.yaml
 mqtt: !include mqtt.yaml
 template: !include templates.yaml
 
+
 influxdb:
   host: !secret "influx_host"
   port: !secret "influx_port"

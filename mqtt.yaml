@@ -1,13 +1,13 @@
 # - 433 Mhz Arduino Sensors Disabled 02/03/2021
 sensor:
   - name: "Beer Fridge Temp"
-    state_topic: "rtl_433home/Ambientweather-F007TH/7"
+    state_topic: "rtl_433home/Ambientweather-F007TH/27/7"
     unit_of_measurement: "°F"
     value_template: "{{ value_json.temperature_F }}"
     force_update: true
 
   - name: "Beer Fridge Battery"
-    state_topic: "rtl_433home/Ambientweather-F007TH/7"
+    state_topic: "rtl_433home/Ambientweather-F007TH/27/7"
     value_template: "{{ value_json.battery_ok }}"
     force_update: true
 
