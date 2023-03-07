@@ -26,7 +26,7 @@ sensor:
   - name: "Breeze Pro Wind Speed"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
     unit_of_measurement: "mph"
-    value_template: "{{ value_json.wind_avg_mi_h}}"
+    value_template: "{{ value_json.wind_avg_mi_h | round(1) }}"
     force_update: true  
 
   - name: "Breeze Pro Wind Dir"
