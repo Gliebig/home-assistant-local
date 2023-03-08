@@ -11,61 +11,49 @@ sensor:
     value_template: "{{ value_json.battery_ok }}"
     force_update: true
 
+  - name: "Main Fridge Temp"
+    state_topic: "rtl_433home/Ambientweather-F007TH/0/8"
+    unit_of_measurement: "°F"
+    value_template: "{{ value_json.temperature_F }}"
+    force_update: true
+
+  - name: "Main Fridge Battery"
+    state_topic: "rtl_433home/Ambientweather-F007TH/0/8"
+    unit_of_measurement: "°F"
+    value_template: "{{ value_json.battery_ok }}"
+    force_update: true
+
   - name: "Breeze Pro Temp"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
     unit_of_measurement: "°F"
     value_template: "{{ value_json.temperature_F }}"
     force_update: true
+    payload_available: "online"
+    payload_not_available: "offline"
 
   - name: "Breeze Pro Humidity"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
     unit_of_measurement: "%"
     value_template: "{{ value_json.humidity }}"
     force_update: true
+    payload_available: "online"
+    payload_not_available: "offline"
 
   - name: "Breeze Pro Wind Speed"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
     unit_of_measurement: "mph"
     value_template: "{{ value_json.wind_avg_mi_h | round(1) }}"
     force_update: true  
+    payload_available: "online"
+    payload_not_available: "offline"
 
   - name: "Breeze Pro Wind Dir"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
     unit_of_measurement: "deg"
     value_template: "{{ value_json.wind_dir_deg }}"
     force_update: true 
-
-#  - name: feels_like
-#    platform: template
-#    sensors:
-#      value_template: >
-#        {{ (states('sensor.breeze_pro_temp')|float) }}
-#        {{ (states('sensor.breeze_pro_humidity')|float) }}
-#        {{ (states('sensor.breeze_pro_wind_speed')|float) }}
-#        {% set T = (states('sensor.breeze_pro_temp')|float) %}
-#        {% set RH = (states('sensor.breeze_pro_humidity')|float) %}
-#        {% set windspeed = (states('sensor.breeze_pro_wind_speed')|float) %}
-#
-#        {{ T, RH, windspeed }}
-#
-#        {% if (80.0 >= T <= 112.0) and (RH < 13) %}
-#          {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) | round (1) %}
-#        {% elif (80.0 >= T <= 87.0) and (RH > 85) %} 
-#          {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) |round (1) %}
-#          {% set A1 = ((13-RH)/4) * SQRT((17-ABS(T-95))/17) %}
-#          {% set feels_like = feels_like - A1 |round(2) %}
-#        {% elif (50.0 < T < 80.0) %}
-#          {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) |round (1) %}
-#          {% set A2 = ((RH-85)/10) * ((87-T)/5) %}
-#          {% set feels_like = feels_like + A2 |round(1) %}
-#        {% elif (T <= 50.0) and (windspeed >0) %}
-#          {% set feels_like = ((0.6215 * T) -35.75*(windspeed**0.16) +0.4275*T*windspeed**0.16+35.74)| round(1)  %}
-#        {% else %}
-#          {% set feels_like = T| round(1)  %}
-#        {% endif %}
-#            
-#        {{ feels_like }} °F  
-
+    payload_available: "online"
+    payload_not_available: "offline"
 
 #  - state_topic: "home/Front_Porch"
 #    name: "Front Porch Temp"
@@ -92,15 +80,6 @@ sensor:
 #    unit_of_measurement: "°F"
 #    value_template: "{{ value_json.temp }}"
 
-#  - state_topic: "home/Plant_Room"
-#    name: "Plant_Room_Humidity"
-#    unit_of_measurement: "%"
-#    value_template: "{{ value_json.humid }}"
-
-#  - state_topic: "home/Office"
-#    name: "Office_Temp"
-#    unit_of_measurement: "°F"
-#    value_template: "{{ value_json.temp }}"
 
 #  - state_topic: "home/Office"
 #    name: "Office_Humidity"
@@ -112,17 +91,6 @@ sensor:
 #    unit_of_measurement: "°F"
 #    value_template: "{{ value_json.temp }}"
 
-#  - state_topic: "appliances/Basement_Freezer"
-#    name: "Basement Freezer Temp"
-#    unit_of_measurement: "°F"
-#    value_template: "{{ value_json.temp }}"
-
-
-
-#  - state_topic: "appliances/Deep_Freezer"
-#    name: "Deep_Freeze_Temp"
-#    unit_of_measurement: "°F"
-#    value_template: "{{ value_json.temp }}"
 
 #  - state_topic: "hydroponic/tank/weight"
 #    name: "Inside Tank Volume"
