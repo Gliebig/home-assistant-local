@@ -37,12 +37,9 @@ influxdb:
   max_retries: 9
   default_measurement: state
 
-device_tracker:
-  - platform: mqtt_json
-    devices:
-      phone_greg: zanzito/shared_locations/greg_note9
-      phone_joyce: zanzito/shared_locations/joyce_s4
-      phone_theresa: zanzito/shared_locations/theresa_note9
+device_tracker: !include device_tracker.yaml
+
+
 
 stream:
 api:

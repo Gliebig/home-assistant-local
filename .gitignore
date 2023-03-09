@@ -33,3 +33,4 @@ secrets.yaml
 watchman_report.txt
 cameras.yaml
 climate.yaml
+device_tracker.yaml
