@@ -164,7 +164,6 @@
     - device_tracker.phone_theresa_2
     platform: state
     to: home
-    from: unavailable
   condition: []
   action:
   - service: input_boolean.turn_on
@@ -429,11 +428,8 @@
   trigger:
   - platform: state
     entity_id:
-    - device_tracker.phone_greg
-    - device_tracker.greg_s_phone
-    - switch.phone_greg
+    - device_tracker.phone_greg_2
     to: home
-    from: unavailable
   condition: []
   action:
   - service: input_boolean.turn_on
@@ -446,14 +442,15 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: device_tracker.theresas_phone
-    from: home
-    to: away
+    entity_id:
+    - device_tracker.phone_theresa_2
+    to: not_home
   condition: []
   action:
   - service: input_boolean.turn_off
     target:
       entity_id: input_boolean.theresa_home
+    data: {}
   mode: single
 - id: '1616774758263'
   alias: Presence Greg Away Automation
@@ -461,12 +458,12 @@
   trigger:
   - platform: state
     entity_id:
-    - device_tracker.gregs_note9
+    - device_tracker.greg_phone_18
     for:
       hours: 0
       minutes: 2
       seconds: 0
-    to: Unknown
+    to: not_home
   condition: []
   action:
   - service: input_boolean.turn_off
