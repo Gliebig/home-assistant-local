@@ -39,7 +39,11 @@ influxdb:
 
 device_tracker: !include device_tracker.yaml
 
-
+logger:
+  default: info
+  logs:
+    homeassistant.components.onvif: info
+#    custom_components.my_integration: critical
 
 stream:
 api:

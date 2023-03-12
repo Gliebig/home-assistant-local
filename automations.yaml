@@ -161,7 +161,7 @@
   description: Theresa is Home
   trigger:
   - entity_id:
-    - device_tracker.phone_theresa_2
+    - person.theresa
     platform: state
     to: home
   condition: []
@@ -322,7 +322,10 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.dryer_current
-    for: 00:00:30
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
     below: '1'
   condition:
   - condition: time
@@ -377,6 +380,10 @@
     data: {}
     target:
       entity_id: light.living_room_fan
+  - service: timer.finish
+    data: {}
+    target:
+      entity_id: timer.dryer_timer
   mode: single
 - id: '1613482500082'
   alias: Grow Lights off 3 hours after Sunrise
@@ -428,7 +435,7 @@
   trigger:
   - platform: state
     entity_id:
-    - device_tracker.phone_greg_2
+    - person.greg
     to: home
   condition: []
   action:
@@ -443,7 +450,7 @@
   trigger:
   - platform: state
     entity_id:
-    - device_tracker.phone_theresa_2
+    - person.theresa
     to: not_home
   condition: []
   action:
@@ -458,10 +465,10 @@
   trigger:
   - platform: state
     entity_id:
-    - device_tracker.greg_phone_18
+    - person.greg
     for:
       hours: 0
-      minutes: 2
+      minutes: 0
       seconds: 0
     to: not_home
   condition: []
@@ -478,13 +485,20 @@
   - platform: numeric_state
     entity_id: sensor.dryer_current
     above: '3'
-    for: 00:00:30
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
   condition: []
   action:
   - service: input_boolean.turn_on
     target:
       entity_id: input_boolean.dryer_state
     data: {}
+  - service: timer.start
+    data: {}
+    target:
+      entity_id: timer.dryer_timer
   mode: single
 - id: '1622484655799'
   alias: Hydroponic Inside Flowrate Center Channel < 0.5 lpm
