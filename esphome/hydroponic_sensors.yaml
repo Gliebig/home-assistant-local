@@ -50,6 +50,7 @@ sensor:
     update_interval: 60s
   - platform: dht
     pin: D7
+    model: AM2302
     temperature:
       name: "Grow Bed Temp AM2302"
       filters:
