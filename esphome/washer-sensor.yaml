@@ -28,23 +28,29 @@ captive_portal:
     
 sensor:
   - platform: ct_clamp
-    sensor: adc_sensor
+    sensor: adc_sensor_washer
     name: "Washer Current"
     update_interval: 10s
     accuracy_decimals: 2
     filters:
-#      - calibrate_linear:
+      - calibrate_linear:
           # Measured value of 0 maps to 0A
-#          - 0 -> 0
+          - 0 -> 0
           # Known load: 4.0A
           # Value shown in logs: 0.1333A
-#          - 0.07 -> 25.2
+          - 0.13 -> 4
+
 
   # Example source sensor
   - platform: adc
     pin: A0
-    id: adc_sensor
-    update_interval: 10s 
-    accuracy_decimals: 4
-    unit_of_measurement: Vac
+    id: adc_sensor_washer
+    #filters:
+    # - multiply: 3.3
+    raw: true
+    update_interval: 5s
+    accuracy_decimals: 6
+    unit_of_measurement: V
+    
+    
     
