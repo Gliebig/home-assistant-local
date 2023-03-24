@@ -35,10 +35,11 @@ sensor:
     filters:
       - calibrate_linear:
           # Measured value of 0 maps to 0A
-          - 0 -> 0
+          - 0 -> 0.001
           # Known load: 4.0A
           # Value shown in logs: 0.1333A
-          - 0.13 -> 4
+          - 0.010 -> 0.4
+          - 0.052 -> 3.0
 
 
   # Example source sensor
@@ -47,8 +48,8 @@ sensor:
     id: adc_sensor_washer
     #filters:
     # - multiply: 3.3
-    raw: true
-    update_interval: 5s
+#    raw: true
+    update_interval: 10s
     accuracy_decimals: 6
     unit_of_measurement: V
     
