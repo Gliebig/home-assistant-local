@@ -811,3 +811,94 @@
   - service: shell_command.pushupdates_to_github
     data: {}
   mode: single
+- id: '1679773197427'
+  alias: Washer Helper On
+  description: Turns Helper On when washer is running
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.washer_current
+    above: 1
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.washer_state
+    data: {}
+  - service: timer.start
+    data: {}
+    target:
+      entity_id: timer.washer_timer
+  mode: single
+- id: '1679773655696'
+  alias: Washer is Done
+  description: Notification when washer turns off
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.washer_current
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+    below: '.2'
+  condition:
+  - condition: time
+    after: 07:00:00
+    before: '22:00:00'
+  - condition: state
+    entity_id: input_boolean.washer_state
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.waher_state
+  - service: notify.alexa_media
+    data:
+      data:
+        type: announce
+        method: tts
+      message: Washer is done. Please put clothes in dryer.
+      title: Washer Cycle Complete
+      target:
+      - media_player.upstairs
+      - media_player.downstairs
+  - data: {}
+    service: light.toggle
+    target:
+      entity_id: light.living_room_fan
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.living_room_fan
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.living_room_fan
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.living_room_fan
+  - service: timer.finish
+    data: {}
+    target:
+      entity_id: timer.washer_timer
+  mode: single
