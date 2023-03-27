@@ -5,23 +5,31 @@ sensor:
     unit_of_measurement: "°F"
     value_template: "{{ value_json.temperature_F }}"
     force_update: true
+    unique_id: 17651EA7E9FB46D2
+
 
   - name: "Beer Fridge Battery"
     state_topic: "rtl_433home/Ambientweather-F007TH/27/7"
     value_template: "{{ value_json.battery_ok }}"
     force_update: true
+    unique_id: 92CFAED178694D19
+
 
   - name: "Main Fridge Temp"
     state_topic: "rtl_433home/Ambientweather-F007TH/0/8"
     unit_of_measurement: "°F"
     value_template: "{{ value_json.temperature_F }}"
     force_update: true
+    unique_id: 74F9ECE916D548CA
+
 
   - name: "Main Fridge Battery"
     state_topic: "rtl_433home/Ambientweather-F007TH/0/8"
     unit_of_measurement: "°F"
     value_template: "{{ value_json.battery_ok }}"
     force_update: true
+    unique_id: 1B411E8B071C440F
+
 
   - name: "Breeze Pro Temp"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
@@ -30,6 +38,8 @@ sensor:
     force_update: true
     payload_available: "online"
     payload_not_available: "offline"
+    unique_id: 41CA5C2ED5344676
+
 
   - name: "Breeze Pro Humidity"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
@@ -38,6 +48,8 @@ sensor:
     force_update: true
     payload_available: "online"
     payload_not_available: "offline"
+    unique_id: C871AF0D2B614F3E
+
 
   - name: "Breeze Pro Wind Speed"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
@@ -46,6 +58,8 @@ sensor:
     force_update: true  
     payload_available: "online"
     payload_not_available: "offline"
+    unique_id: 270ACE67A4E04805
+
 
   - name: "Breeze Pro Wind Dir"
     state_topic: "rtl_433home/LaCrosse-BreezePro/694658"
@@ -54,6 +68,8 @@ sensor:
     force_update: true 
     payload_available: "online"
     payload_not_available: "offline"
+    unique_id: 96FF51CCD0CE402C
+
 
 #  - state_topic: "home/Front_Porch"
 #    name: "Front Porch Temp"
