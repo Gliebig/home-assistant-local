@@ -321,7 +321,7 @@
   description: Notification when dryer turns off
   trigger:
   - platform: numeric_state
-    entity_id: sensor.dryer_current
+    entity_id: sensor.dryer_current_2
     for:
       hours: 0
       minutes: 0
