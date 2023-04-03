@@ -483,12 +483,12 @@
   description: Turns Helper On when dryer is running
   trigger:
   - platform: numeric_state
-    entity_id: sensor.dryer_current
+    entity_id: sensor.dryer_current_2
     above: '3'
     for:
       hours: 0
       minutes: 0
-      seconds: 10
+      seconds: 2
   condition: []
   action:
   - service: input_boolean.turn_on
