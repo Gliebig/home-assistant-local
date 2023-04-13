@@ -30,16 +30,18 @@ sensor:
   - platform: ct_clamp
     sensor: adc_sensor_washer
     name: "Washer Current"
-    update_interval: 10s
+    unit_of_measurement: A
+    update_interval: 500ms
     accuracy_decimals: 2
     filters:
-      - calibrate_linear:
+ #     - calibrate_linear:
           # Measured value of 0 maps to 0A
-          - 0 -> 0.001
-          # Known load: 4.0A
-          # Value shown in logs: 0.1333A
-          - 0.010 -> 0.4
-          - 0.052 -> 3.0
+#          - 0.53220 -> 0.03
+#          # Known load: 4.0A
+#          # Value shown in logs: 0.1333A
+#          - 0.53418 -> 0.4
+#          - 0.54297 -> 0.25
+ #         - 0.83887 -> 3.98
 
 
   # Example source sensor
@@ -49,9 +51,9 @@ sensor:
     #filters:
     # - multiply: 3.3
 #    raw: true
-    update_interval: 10s
-    accuracy_decimals: 6
-    unit_of_measurement: V
+#    update_interval: 0.5s
+#    accuracy_decimals: 6
+#    unit_of_measurement: V
     
     
     
