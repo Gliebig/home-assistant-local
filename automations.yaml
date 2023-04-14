@@ -66,7 +66,7 @@
   condition: []
   action:
   - data:
-      message: Basement Fridge >40 for 15 min. Currently ({{states("sensor.basement_fridge_temp")
+      message: Basement Fridge >40 for 15 min. Currently ({{states("sensor.basement_fridge_temp_2")
         }}°F)
     service: persistent_notification.create
   - service: notify.alexa_media
