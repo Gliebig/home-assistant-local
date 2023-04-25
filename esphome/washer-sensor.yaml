@@ -22,7 +22,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Washer Sensor Fallback Hotspot"
-    password: !secret "fallback_password"
+    password: !secret fallback_password
 
 #captive_portal:
     
@@ -48,12 +48,7 @@ sensor:
   - platform: adc
     pin: A0
     id: adc_sensor_washer
-    #filters:
-    # - multiply: 3.3
-#    raw: true
-#    update_interval: 0.5s
-#    accuracy_decimals: 6
-#    unit_of_measurement: V
-    
+    accuracy_decimals: 4
+    unit_of_measurement: V
     
     

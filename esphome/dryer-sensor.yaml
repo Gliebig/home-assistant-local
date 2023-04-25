@@ -46,7 +46,7 @@ sensor:
     id: adc_sensor
     update_interval: 30s 
     accuracy_decimals: 4
-    unit_of_measurement: Vac
+    unit_of_measurement: V
     
 binary_sensor:
   - platform: gpio
