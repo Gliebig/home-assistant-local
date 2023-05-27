@@ -4,16 +4,29 @@
       {% set T = (states('sensor.breeze_pro_temp') | float) %}
       {% set RH = (states('sensor.breeze_pro_humidity') | float) %}
       {% set windspeed = (states('sensor.breeze_pro_wind_speed')|float) %}
+      {% set C1 = 42.379 | float %}
+      {% set C2 = 2.04901523 | float %}
+      {% set C3 = 10.14333127 | float %}
+      {% set C4 = 0.22475541 | float %}
+      {% set C5 = 0.00683783 | float %}
+      {% set C6 = 0.05481717 | float %}
+      {% set C7 = 0.00122874 | float %}
+      {% set C8 = 0.00085282 | float %}  
+      {% set C9 = 0.00000199 | float %}        
+      {% set heat_index = -C1 + C2*T + C3*RH - C4*T*RH - C5*T**2 - C6*RH**2 + C7*T**2*RH + C8*T*RH**2 - C9*T**2*RH**2 %}      
+
       {% if (80.0 <= T <= 112.0) and (RH < 13) %}
-        {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) | round (1) %}
+        {% set A1 = ((13 - RH)/4)*((17-(T-95 |abs)/17)**0.5)  %}
+        {% set feels_like = heat_index - A1 |round(1) %}
+
       {% elif (80.0 <= T <= 87.0) and (RH > 85) %} 
-        {% set feels_like = (-42.379 + 2.04901523 * T + 10.14333127 * RH - 0.22475541 * T * RH - 0.00683783 * T * T - 0.05481717 * RH * RH + 0.00122874 * T * T * RH + 0.00085282 * T * RH * RH - 0.00000199 * T * T * RH * RH ) |round (1) %}
-        {% set A1 = ((13-RH)/4) * (((17-( (T-95) |abs ))/17)**0.5) %}
-        {% set feels_like = (feels_like - A1) |round(2) %}
+        {% set A1 = (RH - 85)/10 * ((87 - T)/5) %}
+        {% set feels_like = heat_index - A1 |round(1) %}
+
       {% elif (50.0 < T < 80.0) %}
-        {% set feels_like = (-42.379 + (2.04901523 * T) + (10.14333127 * RH) - ((0.22475541 * T) * RH) - ((0.00683783 * T )* T) - (((0.05481717 * RH) * RH) + (((0.00122874 * T) * T) * RH) + ((0.00085282 * T) * RH) * RH) - (((( 0.00000199 * T) * T) * RH) * RH) ) |round (1) %}
-        {% set A2 = ((RH-85)/10) * ((87-T)/5) %}
-        {% set feels_like = (feels_like + A2) |round(1) %}
+        {% set heat_index = 0.5 * (T + 61.0 + (T - 68)*1.2) + (RH * 0.094) %}
+        {% set feels_like = (heat_index) |round(1) %}
+
       {% elif (T <= 50.0) and (windspeed >0) %}
         {% set feels_like = ((0.6215 * T) -35.75*(windspeed**0.16) + ((0.4275*T)*(windspeed**0.16))+35.74)| round(1)  %}
       {% else %}
