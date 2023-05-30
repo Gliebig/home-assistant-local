@@ -10,7 +10,7 @@ logger:
 api:
 
 ota:
-  password: !secret hydroponics-outside_ota_password:
+  password: !secret ota_password
 
 wifi:
   ssid: !secret wifi_ssid
@@ -51,11 +51,11 @@ sensor:
     accuracy_decimals: 2
     filters:
       - calibrate_linear:
-          - 106656 -> 0
-          - 400000 -> 5
-          - 770000 -> 10
-          - 1072000 -> 15
-          - 1381500 -> 20
+          - 15350 -> 0
+          - 498200 -> 5
+          - 972700 -> 10
+          - 1449000 -> 15
+          - 1925300 -> 20
       - sliding_window_moving_average:
           window_size: 5
           send_every: 3
