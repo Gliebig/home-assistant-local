@@ -49,6 +49,40 @@ stream:
 api:
 alexa:
   smart_home:
+    locale: en-US
+    endpoint: https://api.amazonalexa.com/v3/events
+    client_id: https://pitangui.amazon.com/
+    client_secret: F1772AA678574BACB0AC3106DCAA2CA0
+
+    filter:
+      include_entities:
+        - light.greg_s_light
+        - light.living_room_fan_light
+        - light.theresas_light
+      include_entity_globs:
+        - binary_sensor.*_motion
+      include_domains:
+        - switch
+      exclude_entities:
+        - switch.outside
+      exclude_domains:
+        - binary_sensor.*
+        - camera.*
+        - button.*
+        - device_tracker.*
+        - sensor.*
+    entity_config:
+      light.greg_s_light:
+        name: "Greg's Light"
+        description: "The light next to Greg"
+      light.theresas_light:
+        name: "Theresa's Light"
+        description: "The light next to Theresa"
+      switch.stairs:
+        display_categories: LIGHT
+
+
+
 
 shell_command:
   pushupdates_to_github: /bin/bash pushupdates.sh

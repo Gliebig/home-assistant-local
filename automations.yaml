@@ -52,42 +52,6 @@
     target:
       device_id: 92c76143e2095a0530e4981a754fb71b
   mode: single
-- id: '1519655053818'
-  alias: Basement Fridge Too Warm
-  trigger:
-  - above: '41'
-    entity_id: sensor.basement_fridge_temp_2
-    for:
-      hours: 0
-      minutes: 15
-      seconds: 0
-      milliseconds: 0
-    platform: numeric_state
-  condition: []
-  action:
-  - data:
-      message: Basement Fridge >40 for 15 min. Currently ({{states("sensor.basement_fridge_temp_2")
-        }}°F)
-    service: persistent_notification.create
-  - service: notify.alexa_media
-    data:
-      target:
-      - media_player.bathroom_echo
-      - media_player.bedroom_echo
-      - media_player.guestroom_echo
-      - media_player.greg_s_echo_show
-      - media_player.kitchen_echo_show
-      - media_player.living_room_echo_plus
-      - media_player.samsung_soundbar
-      - media_player.theresa_s_echo_show
-      - media_player.tv
-      message: Check basement Fridge. Temperature is too warm
-      title: Basement Fridge Off
-  - service: notify.greg
-    data:
-      message: Basement Fridge above 40 for the last 15 minutes
-      title: Basement Fridge Too Warm
-  mode: single
 - id: '1520009548404'
   alias: Christmas lights on before sunset for 6 hours
   trigger:
@@ -132,30 +96,6 @@
       - light.patio_security_light
       - light.east_light
   mode: single
-- id: '1528229584189'
-  alias: Alert Mom
-  trigger:
-  - entity_id: device_tracker.phone_joyce
-    for: 00:00:30
-    from: not_home
-    platform: state
-    to: home
-  - entity_id: device_tracker.phone_joyce
-    event: enter
-    platform: zone
-    zone: zone.gathering_place
-  - entity_id: device_tracker.phone_joyce
-    event: enter
-    platform: zone
-    zone: zone.good_shephard
-  condition: []
-  action:
-  - data:
-      message: 'Mom is home '
-    service: notify.greg
-  - data:
-      message: 'Mom is home '
-    service: notify.theresa
 - id: '1528683044495'
   alias: Presence Home Theresa
   description: Theresa is Home
@@ -203,25 +143,6 @@
     data:
       entity_id: switch.portable_tstat
     service: switch.turn_off
-- id: '1530567396291'
-  alias: Basement Fridge Temp OK
-  trigger:
-  - above: '30'
-    entity_id: sensor.basement_fridge_temp_2
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-      milliseconds: 0
-    platform: numeric_state
-    below: '40.9'
-  condition: []
-  action:
-  - service: notify.mobile_app_sm_n960u
-    data:
-      message: Basement Fridge Temp OK
-      title: Basement Fridge Temp OK
-  mode: single
 - id: '1544194127887'
   alias: Christmas Tree and Leg Lamp Turn Off
   trigger:
@@ -339,16 +260,11 @@
     data: {}
     target:
       entity_id: input_boolean.dryer_state
-  - service: notify.alexa_media
+  - service: notify.alexa_media_everywhere
     data:
-      data:
-        type: announce
-        method: tts
-      message: Dryer is done. Please fold clothes before they get wrinkled.
-      title: Dryer Cycle Complete
-      target:
-      - media_player.upstairs
-      - media_player.downstairs
+      message: Dryer is Done and clothes will get wrinkled if not folded.
+      title: Dryer is done
+      target: media_player.everywhere
   - data: {}
     service: light.toggle
     target:
@@ -576,10 +492,18 @@
   condition:
   - condition: time
     after: 09:00:00
+  - condition: and
+    conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: device_tracker.theresa_note9
+        state: not_home
   action:
-  - service: switch.toggle
+  - service: light.turn_off
+    data: {}
     target:
-      entity_id: switch.kitchen_sink_light
+      device_id: 92c76143e2095a0530e4981a754fb71b
   mode: single
 - id: '1624195657316'
   alias: Hydroponic Outside Flowrate East Channel < 0.5 lpm
@@ -657,13 +581,17 @@
       - light.patio_security_light
   mode: single
 - id: '1624561506833'
-  alias: Turn Office Fan on Medium with Office Temp >75
-  description: ''
+  alias: Office Fan on Medium >77
+  description: Turn on office fan to medium temp > 77
   trigger:
   - platform: numeric_state
-    entity_id: sensor.office_temp_2
-    for: 00:05:00
-    above: '75'
+    entity_id: sensor.office_temp_3
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+    above: 77
     below: '84.9'
   condition: []
   action:
@@ -671,37 +599,46 @@
     data:
       percentage: 66
     target:
-      entity_id: fan.office_fan
+      device_id: 5971e0095e9897ebae039b0b698e9f1b
   mode: single
 - id: '1624561681091'
-  alias: Turn Office Fan Off
-  description: ''
+  alias: Office Fan Off
+  description: Turn off office fan < 72F
   trigger:
   - platform: numeric_state
-    entity_id: sensor.office_temp_2
+    entity_id: sensor.office_temp_3
     below: '72'
-    for: 00:05:00
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
   condition: []
   action:
   - service: fan.turn_off
+    data: {}
     target:
-      entity_id: fan.office_fan
+      device_id: 5971e0095e9897ebae039b0b698e9f1b
   mode: single
 - id: '1625352776992'
-  alias: Turn Office Fan on high temp >85
-  description: ''
+  alias: Office Fan on High temp >85
+  description: Set speed to high temp >85
   trigger:
   - platform: numeric_state
-    entity_id: sensor.office_temp_2
+    entity_id: sensor.office_temp_3
     above: '85'
-    for: 00:05:00
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
   condition: []
   action:
-  - service: fan.set_speed
-    target:
-      entity_id: fan.office_fan
+  - service: fan.turn_on
     data:
-      speed: '100'
+      percentage: 100
+    target:
+      device_id: 5971e0095e9897ebae039b0b698e9f1b
   mode: single
 - id: '1626627438736'
   alias: Dryer Fluffing
@@ -901,4 +838,25 @@
     data: {}
     target:
       entity_id: timer.washer_timer
+  mode: single
+- id: '1687796185219'
+  alias: Office Fan Low >72 < 77
+  description: Turn on office fan low > 72 and < 77
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.office_temp_3
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+    above: 72
+    below: 77
+  condition: []
+  action:
+  - service: fan.turn_on
+    data:
+      percentage: 33
+    target:
+      device_id: 5971e0095e9897ebae039b0b698e9f1b
   mode: single
