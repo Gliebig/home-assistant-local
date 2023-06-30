@@ -57,8 +57,13 @@ alexa:
     filter:
       include_entities:
         - light.greg_s_light
-        - light.living_room_fan_light
+        - light.living_room_light
         - light.theresas_light
+        - light.kitchen_sink_light
+        - light.bathroom_night_light
+        - light.deck_light
+        - light.deck_stair_lights
+        - light.post_light
       include_entity_globs:
         - binary_sensor.*_motion
       include_domains:
@@ -78,6 +83,9 @@ alexa:
       light.theresas_light:
         name: "Theresa's Light"
         description: "The light next to Theresa"
+      light.living_room_light:
+          name: "Living Room Fan Light"
+          description: "Light in living room fan"
       switch.stairs:
         display_categories: LIGHT
 
