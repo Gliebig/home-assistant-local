@@ -515,10 +515,9 @@
     for: 00:01:00
   condition: []
   action:
-  - service: notify.mobile_app_greg_mobile
+  - service: notify.mobile_app_sm_n960u
     data:
-      message: Outside East Channel Flow Rate < 0.5 liters per minute
-      title: Hydroponic Flow Rate Alert
+      message: Outside Flowrate Low
   mode: single
 - id: '1624195746147'
   alias: Hydroponic Outside Flowrate West Channel < 0.5 lpm
