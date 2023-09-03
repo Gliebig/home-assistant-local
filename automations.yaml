@@ -182,7 +182,7 @@
   - data: {}
     service: light.turn_off
     target:
-      device_id: 5c31a4af3404cba55f3ebb340573a43c
+      device_id: 24a42a6975d34e464c4d9031b41fdd3e
   mode: single
 - id: '1567427515818'
   alias: Vacation Turn ion living room lights 30 mins after sunset
@@ -235,7 +235,7 @@
   - service: light.turn_on
     data: {}
     target:
-      device_id: 5c31a4af3404cba55f3ebb340573a43c
+      device_id: 24a42a6975d34e464c4d9031b41fdd3e
   mode: single
 - id: '1590268768158'
   alias: Dryer is Done
