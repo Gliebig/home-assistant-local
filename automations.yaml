@@ -273,7 +273,16 @@
       hours: 0
       minutes: 0
       seconds: 0
-      milliseconds: 500
+      milliseconds: 750
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.living_room_fan
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 750
   - service: light.toggle
     data: {}
     target:
@@ -286,16 +295,7 @@
   - service: light.toggle
     data: {}
     target:
-      entity_id: light.living_room_fan
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 0
-      milliseconds: 500
-  - service: light.toggle
-    data: {}
-    target:
-      entity_id: light.living_room_fan
+      device_id: c944a50ed8d095acb8278d6a5cf1ba0e
   - service: timer.finish
     data: {}
     target:
