@@ -47,49 +47,80 @@ logger:
 
 stream:
 api:
-alexa:
-  smart_home:
-    locale: en-US
-    endpoint: https://api.amazonalexa.com/v3/events
-    client_id: https://pitangui.amazon.com/
-    client_secret: F1772AA678574BACB0AC3106DCAA2CA0
 
-    filter:
-      include_entities:
-        - light.greg_s_light
-        - light.living_room_light
-        - light.theresas_light
-        - light.kitchen_sink_light
-        - light.bathroom_night_light
-        - light.deck_light
-        - light.deck_stair_lights
-        - light.post_light
-      include_entity_globs:
-        - binary_sensor.*_motion
-      include_domains:
-        - switch
-      exclude_entities:
-        - switch.outside
-      exclude_domains:
-        - binary_sensor.*
-        - camera.*
-        - button.*
-        - device_tracker.*
-        - sensor.*
-    entity_config:
-      light.greg_s_light:
-        name: "Greg's Light"
-        description: "The light next to Greg"
-      light.theresas_light:
-        name: "Theresa's Light"
-        description: "The light next to Theresa"
-      light.living_room_light:
-          name: "Living Room Fan Light"
-          description: "Light in living room fan"
-      switch.stairs:
-        display_categories: LIGHT
+#alexa:
+#  smart_home:
+#    locale: en-US
+#    endpoint: https://api.amazonalexa.com/v3/events
+#    client_id: https://pitangui.amazon.com/
+#    client_secret: F1772AA678574BACB0AC3106DCAA2CA0
 
+#    filter:
+#      include_entities:
+#        - light.greg_s_light
+#        - light.living_room_light
+#        - light.theresas_light
+#        - light.kitchen_sink_light
+#        - light.bathroom_night_light
+#        - light.deck_light
+#        - light.deck_stair_lights
+#        - light.post_light
+#      include_entity_globs:
+#        - binary_sensor.*_motion
+#      include_domains:
+#        - switch
+#      exclude_entities:
+#        - switch.outside
+#      exclude_domains:
+#        - binary_sensor.*
+#        - camera.*
+#        - button.*
+#        - device_tracker.*
+#        - sensor.*
+#    entity_config:
+#      light.greg_s_light:
+#        name: "Greg's Light"
+#        description: "The light next to Greg"
+#      light.theresas_light:
+#        name: "Theresa's Light"
+#        description: "The light next to Theresa"
+#      light.living_room_light:
+#          name: "Living Room Fan Light"
+#          description: "Light in living room fan"
+#      switch.stairs:
+#        display_categories: LIGHT
 
+emulated_hue:
+  host_ip: 192.168.8.20
+#  listen_port: 8300
+  listen_port: 80
+#  advertise_ip: 10.0.0.10
+#  advertise_port: 8080
+  off_maps_to_on_domains:
+    - script
+    - scene
+  expose_by_default: false
+  exposed_domains:
+#    - light
+#    - switch
+  entities:
+    light.greg_s_light_2:
+      name: "Greg's Light"
+    light.living_room_fan:
+      name: "Living Room Fan Light"
+      hidden: false
+    light.theresas_light_3:
+      name: "Theresa's Light"
+      hidden: false
+    light.deck_light:
+      name: "Deck Light"
+      hidden: false
+    fan.living_room_fan:
+      name: "Living Room Fan"
+      hidden: false
+    light.kitchen_sink_light:
+      name: "Kitchen Sink Light"
+      hidden: false
 
 
 shell_command:
