@@ -57,8 +57,7 @@ sensor:
     value_template: "{{ value_json.wind_avg_mi_h | round(1) }}"
     force_update: true  
     payload_available: "online"
-    payload_not_available:
- "offline"
+    payload_not_available: "offline"
     unique_id: 270ACE67A4E04805
 
   - name: "Breeze Pro Wind Dir"
