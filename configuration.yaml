@@ -34,7 +34,7 @@ influxdb:
   database: homeassistant
   username: !secret influx1_usr
   password: !secret influx1_pwd
-  max_retries: 9
+  max_retries: 3
   default_measurement: state
 
 device_tracker: !include device_tracker.yaml
