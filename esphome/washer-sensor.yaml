@@ -31,15 +31,15 @@ sensor:
     sensor: adc_sensor_washer
     name: "Washer Current"
     unit_of_measurement: A
-    update_interval: 5s
+    update_interval: 20s
     accuracy_decimals: 2
     filters:
- #     - calibrate_linear:
+     - calibrate_linear:
           # Measured value of 0 maps to 0A
-#          - 0.53220 -> 0.03
+         - 0.0 -> 0.003
 #          # Known load: 4.0A
 #          # Value shown in logs: 0.1333A
-#          - 0.53418 -> 0.4
+         - 0.135 -> 03.5
 #          - 0.54297 -> 0.25
  #         - 0.83887 -> 3.98
 
@@ -50,5 +50,6 @@ sensor:
     id: adc_sensor_washer
     accuracy_decimals: 4
     unit_of_measurement: V
+    
     
     
