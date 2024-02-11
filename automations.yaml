@@ -147,7 +147,7 @@
 - id: '1544194127887'
   alias: Christmas Tree and Leg Lamp Turn Off
   trigger:
-  - at: 00:00:00
+  - at: '23:00:00'
     platform: time
   condition: []
   action:
@@ -753,8 +753,9 @@
   description: Turns Helper On when washer is running
   trigger:
   - platform: numeric_state
-    entity_id: sensor.washer_current
-    above: 1
+    entity_id:
+    - sensor.washer_current
+    above: 0.11
     for:
       hours: 0
       minutes: 0
@@ -775,38 +776,34 @@
   description: Notification when washer turns off
   trigger:
   - platform: numeric_state
-    entity_id: sensor.washer_current
+    entity_id:
+    - sensor.washer_current
     for:
       hours: 0
-      minutes: 0
-      seconds: 10
-    below: '.2'
+      minutes: 1
+      seconds: 0
+    below: 0.11
   condition:
   - condition: time
     after: 07:00:00
     before: '22:00:00'
   - condition: state
-    entity_id: input_boolean.washer_state
+    entity_id: automation.washer_helper_on
     state: 'on'
   action:
   - service: input_boolean.turn_off
     data: {}
     target:
       entity_id: input_boolean.waher_state
-  - service: notify.alexa_media
+  - service: notify.alexa_media_living_room_echo_plus
     data:
-      data:
-        type: announce
-        method: tts
-      message: Washer is done. Please put clothes in dryer.
-      title: Washer Cycle Complete
-      target:
-      - media_player.upstairs
-      - media_player.downstairs
+      message: Washer is done. Please put clothes in dryer
+      title: Washer Done
   - data: {}
     service: light.toggle
     target:
       entity_id: light.living_room_fan
+      area_id: 79b178910d70414b82febb3f8462566a
   - delay:
       hours: 0
       minutes: 0
@@ -816,6 +813,7 @@
     data: {}
     target:
       entity_id: light.living_room_fan
+      area_id: 79b178910d70414b82febb3f8462566a
   - delay:
       hours: 0
       minutes: 0
@@ -825,6 +823,7 @@
     data: {}
     target:
       entity_id: light.living_room_fan
+      area_id: 79b178910d70414b82febb3f8462566a
   - delay:
       hours: 0
       minutes: 0
@@ -834,6 +833,7 @@
     data: {}
     target:
       entity_id: light.living_room_fan
+      area_id: 79b178910d70414b82febb3f8462566a
   - service: timer.finish
     data: {}
     target:
