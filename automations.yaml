@@ -102,7 +102,7 @@
   description: Theresa is Home
   trigger:
   - entity_id:
-    - person.theresa
+    - device_tracker.theresa_sm_n960u
     platform: state
     to: home
   condition: []
@@ -860,3 +860,13 @@
     target:
       device_id: 5971e0095e9897ebae039b0b698e9f1b
   mode: single
+- id: '1718249261768'
+  alias: Hall fan light on
+  description: Kitchen motion detected
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.81_kitchen_cam_cell_motion_detection
+      light_target:
+        device_id: ace1029bb58a8daa4d74a60bfc2e7899
+      no_motion_wait: 300
